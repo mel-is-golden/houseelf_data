@@ -10,7 +10,11 @@ gc_content <- function(elf){
   gc <- (Gs+Cs)/t*100
 return(gc)
 }
-for(i in 1:length(elf)){
-  print(gc_content(elf[i]))
-}
 
+percent_gc <- gc_content(elf)
+
+# Exercise 7
+source('classify_ear_size.R')
+ear_class <- get_size_class(houseelf$earlength)
+df.table <- data.frame(houseelf$id, ear_class, percent_gc)
+write.csv(df.table, file = "houseelf_ear_gc_data.csv")
